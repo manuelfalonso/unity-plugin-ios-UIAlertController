@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/UIAlertController-plugin/UIAlertController-Demo-Scene.unity
+    guid: 7d2f0f9ae193dc7408838e7e027d3c40
   m_configObjects: {}
