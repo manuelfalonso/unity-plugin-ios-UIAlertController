@@ -1,4 +1,5 @@
 #import "UNiOSAlert.h"
+
 extern "C"
 {
     typedef void (*OnCompletionCallback)(const char * str);
@@ -7,21 +8,21 @@ extern "C"
 const char * actionSecondStr,
 const char * actionThirdStr,
               OnCompletionCallback testCallback)
-    {
-        [UnAlertDialog showDialogWithTitle:[NSString stringWithUTF8String : title]
-          message:[NSString stringWithUTF8String : msg]
+    {        
+        [UNAlertDialog showDialogWithTitle:[NSString stringWithUTF8String : title]
+          messageContent:[NSString stringWithUTF8String : msg]
           firstButtonTitle: (actionFirstStr != nil) ?  [NSString stringWithUTF8String : actionFirstStr] : nil
           secondButtonTitle:(actionSecondStr != nil) ?  [NSString stringWithUTF8String : actionSecondStr] : nil
           thirdButtonTitle:(actionThirdStr != nil) ?  [NSString stringWithUTF8String : actionThirdStr] : nil
-          onCompletion: callback];
+          onCompletion: testCallback ];
     }
 }
  
 @implementation UNAlertDialog
 + (void) showDialogWithTitle:(NSString *) title
-           message:(NSString*) msg
+              messageContent:(NSString*) msg
            firstButtonTitle : (NSString *)actionFirstText
-           secondButtonTitle : (NSString *)actionSecondText
+           secondButtonTitle: (NSString *)actionSecondText
            thirdButtonTitle : (NSString *)actionThirdText
            onCompletion : (void(*)(const char *)) func
 {
@@ -31,12 +32,12 @@ const char * actionThirdStr,
                preferredStyle:UIAlertControllerStyleAlert];
     [UNAlertDialog setAlertWith : alert actionText : actionFirstText onCompletion : func];
     [UNAlertDialog setAlertWith : alert actionText : actionSecondText onCompletion : func];
-    [UNAlertdialog setAlertWith : alert actionText : actionThirdText onCompletion : func];
+    [UNAlertDialog setAlertWith : alert actionText : actionThirdText onCompletion : func];
  
     UIViewController * viewCtrl = UnityGetGLViewController();
     [viewCtrl presentViewController:alert animated:YES completion:nil];
- 
 }
+
 +(void)setAlertWith : (UIAlertController * ) alert actionText: (NSString*)text
    onCompletion : (void(*)(const char *)) func;
 {
@@ -53,4 +54,5 @@ const char * actionThirdStr,
         [alert addAction:cancelAction];
     }
 }
+
 @end
